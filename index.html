@@ -24,10 +24,11 @@
     body{
       margin:0;
       color:var(--text);
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
       background:
         radial-gradient(1200px 700px at 15% 10%, rgba(109,92,255,.25), transparent 60%),
         radial-gradient(900px 600px at 80% 30%, rgba(255,79,216,.18), transparent 55%),
+        radial-gradient(900px 700px at 50% 90%, rgba(0,255,209,.10), transparent 60%),
         linear-gradient(180deg, var(--bg2), var(--bg1));
       overflow-x:hidden;
     }
@@ -39,6 +40,7 @@
       height:86px;
       pointer-events:none;
       z-index:1;
+      filter: drop-shadow(0 8px 18px rgba(0,0,0,.45));
     }
     .garland:before{
       content:"";
@@ -46,19 +48,30 @@
       left:-5vw; right:-5vw; top:18px;
       height:56px;
       background:
-        radial-gradient(circle at 8% 60%, #ffe182 0 6px, transparent 7px),
-        radial-gradient(circle at 16% 30%, #7effcd 0 6px, transparent 7px),
-        radial-gradient(circle at 24% 70%, #ff5ad6 0 6px, transparent 7px),
-        radial-gradient(circle at 32% 35%, #78aaff 0 6px, transparent 7px),
-        radial-gradient(circle at 40% 65%, #ffe182 0 6px, transparent 7px);
+        radial-gradient(circle at 8% 60%, rgba(255,225,130,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 16% 30%, rgba(126,255,205,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 24% 70%, rgba(255,90,214,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 32% 35%, rgba(120,170,255,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 40% 65%, rgba(255,225,130,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 48% 28%, rgba(126,255,205,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 56% 72%, rgba(255,90,214,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 64% 34%, rgba(120,170,255,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 72% 68%, rgba(255,225,130,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 80% 30%, rgba(126,255,205,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 88% 70%, rgba(255,90,214,.95) 0 6px, transparent 7px),
+        radial-gradient(circle at 96% 36%, rgba(120,170,255,.95) 0 6px, transparent 7px);
+      opacity:.95;
       animation: twinkle 2.2s ease-in-out infinite;
     }
     .garland:after{
       content:"";
       position:absolute;
       left:-10vw; right:-10vw; top:6px;
+      height:80px;
       border-top: 2px solid rgba(255,255,255,.16);
       border-radius: 0 0 60% 60%;
+      transform: translateY(10px);
+      opacity:.6;
     }
     @keyframes twinkle{
       0%,100%{filter:brightness(.95)}
@@ -83,7 +96,9 @@
       box-shadow: var(--shadow);
       padding: 26px 22px 22px;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       position:relative;
+      overflow:hidden;
     }
 
     .badge{
@@ -96,28 +111,44 @@
       border:1px solid rgba(255,255,255,.12);
       color: var(--muted);
       font-size: 13px;
+      letter-spacing:.2px;
     }
     .dot{
       width:8px; height:8px; border-radius:999px;
       background: linear-gradient(90deg, var(--accent1), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(109,92,255,.12);
     }
 
     h1{
       margin:14px 0 10px;
       font-size: 26px;
+      line-height: 1.15;
+      letter-spacing: -.3px;
     }
     p{
       margin:0 0 14px;
       color: var(--muted);
       font-size: 15px;
+      line-height: 1.45;
     }
 
     .timer{
       margin: 14px 0 18px;
-      padding: 14px;
+      padding: 14px 14px;
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,.12);
       background: rgba(0,0,0,.22);
+    }
+    .timerTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom:10px;
+    }
+    .timerTop span{
+      color: var(--muted);
+      font-size: 13px;
     }
     .timerGrid{
       display:grid;
@@ -128,39 +159,85 @@
       border-radius: 14px;
       background: rgba(255,255,255,.06);
       border:1px solid rgba(255,255,255,.10);
-      padding: 10px;
+      padding: 10px 8px;
       text-align:center;
     }
     .tNum{
       font-size: 22px;
       font-weight: 800;
+      letter-spacing: .6px;
     }
     .tLbl{
+      margin-top:4px;
       font-size: 11px;
       color: rgba(255,255,255,.65);
+      letter-spacing:.35px;
       text-transform: uppercase;
     }
 
     .cta{
       display:block;
       width:100%;
-      padding: 18px;
-      border-radius: 18px;
-      font-size: 18px;
-      font-weight: 800;
-      color: white;
+      border:0;
+      cursor:pointer;
       text-decoration:none;
       text-align:center;
+
+      padding: 18px 18px;
+      border-radius: 18px;
+
+      font-size: 18px;
+      font-weight: 800;
+      letter-spacing: .2px;
+      color: white;
+
       background: linear-gradient(90deg, var(--accent1), var(--accent2));
-      box-shadow: 0 16px 40px rgba(109,92,255,.25);
+      box-shadow:
+        0 16px 40px rgba(109,92,255,.25),
+        0 16px 40px rgba(255,79,216,.18);
+      transition: transform .12s ease, filter .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .cta:active{ transform: translateY(1px) scale(.995); filter: brightness(.98); }
+
+    .fine{
+      margin-top: 12px;
+      text-align:center;
+      color: rgba(255,255,255,.55);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+
+    /* лёгкий снег */
+    canvas#snow{
+      position:fixed;
+      inset:0;
+      z-index:0;
+      pointer-events:none;
+      opacity:.65;
+    }
+
+    /* декоративный блик */
+    .shine{
+      position:absolute;
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.16), transparent 55%);
+      top: -260px;
+      right: -260px;
+      transform: rotate(15deg);
+      pointer-events:none;
     }
   </style>
 </head>
 <body>
-  <div class="garland"></div>
+  <div class="garland" aria-hidden="true"></div>
+  <canvas id="snow" aria-hidden="true"></canvas>
 
   <main class="wrap">
     <section class="card">
+      <div class="shine" aria-hidden="true"></div>
 
       <div class="badge">
         <span class="dot"></span>
@@ -168,9 +245,14 @@
       </div>
 
       <h1>Успевай запрыгнуть в последний вагон 🚀</h1>
-      <p>Пока все только заходят — ты можешь оказаться впереди!</p>
+      <p>Пока все только заходят — ты можешь оказаться впереди. Нажми кнопку и забирай доступ.</p>
 
-      <div class="timer">
+      <div class="timer" role="group" aria-label="Обратный отсчёт">
+        <div class="timerTop">
+          <span>До конца “окна”</span>
+          <span id="deadlineText">до 01.01</span>
+        </div>
+
         <div class="timerGrid">
           <div class="tBox"><div class="tNum" id="d">00</div><div class="tLbl">дни</div></div>
           <div class="tBox"><div class="tNum" id="h">00</div><div class="tLbl">часы</div></div>
@@ -179,28 +261,94 @@
         </div>
       </div>
 
-      <a class="cta" href="https://t.me/+Wb0xRpte5adiODcy" target="_blank">
+      <a class="cta" href="https://t.me/+Wb0xRpte5adiODcy" target="_blank" rel="noopener">
         🎮 Играть в Telegram
       </a>
-
     </section>
   </main>
 
   <script>
-    const deadline = new Date(new Date().getFullYear()+1,0,1);
-    const pad = n => String(n).padStart(2,"0");
-    setInterval(()=>{
-      const t = Math.max(0, deadline - new Date());
-      const s = Math.floor(t/1000);
-      d.textContent = pad(Math.floor(s/86400));
-      h.textContent = pad(Math.floor(s%86400/3600));
-      m.textContent = pad(Math.floor(s%3600/60));
-      sEl.textContent = pad(s%60);
-    },1000);
-    const d=document.getElementById("d"),
-          h=document.getElementById("h"),
-          m=document.getElementById("m"),
-          sEl=document.getElementById("s");
+    // ====== ТАЙМЕР ======
+    // Дедлайн: ближайшее 01.01 00:00 (локальное время пользователя)
+    function nextJan1() {
+      const now = new Date();
+      const year = now.getFullYear();
+      const jan1This = new Date(year, 0, 1, 0, 0, 0);
+      const jan1Next = new Date(year + 1, 0, 1, 0, 0, 0);
+      return now < jan1This ? jan1This : jan1Next;
+    }
+    const deadline = nextJan1();
+
+    const pad2 = (n) => String(n).padStart(2, "0");
+    const $d = document.getElementById("d");
+    const $h = document.getElementById("h");
+    const $m = document.getElementById("m");
+    const $s = document.getElementById("s");
+    const $deadlineText = document.getElementById("deadlineText");
+
+    const dd = pad2(deadline.getDate());
+    const mm = pad2(deadline.getMonth() + 1);
+    $deadlineText.textContent = "до " + dd + "." + mm;
+
+    function tick(){
+      const now = new Date();
+      let ms = deadline - now;
+      if (ms < 0) ms = 0;
+
+      const totalSec = Math.floor(ms / 1000);
+      const days = Math.floor(totalSec / 86400);
+      const hours = Math.floor((totalSec % 86400) / 3600);
+      const mins = Math.floor((totalSec % 3600) / 60);
+      const secs = totalSec % 60;
+
+      $d.textContent = pad2(days);
+      $h.textContent = pad2(hours);
+      $m.textContent = pad2(mins);
+      $s.textContent = pad2(secs);
+    }
+    tick();
+    setInterval(tick, 1000);
+
+    // ====== СНЕГ (лёгкий) ======
+    const canvas = document.getElementById("snow");
+    const ctx = canvas.getContext("2d");
+    let w, h, flakes;
+
+    function resize(){
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+      const count = Math.min(140, Math.floor(w / 10));
+      flakes = Array.from({length: count}, () => ({
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: 0.6 + Math.random() * 2.2,
+        s: 0.4 + Math.random() * 1.4,
+        a: 0.15 + Math.random() * 0.55,
+        drift: (Math.random() - 0.5) * 0.6
+      }));
+    }
+    window.addEventListener("resize", resize, {passive:true});
+    resize();
+
+    function draw(){
+      ctx.clearRect(0,0,w,h);
+      for (const f of flakes){
+        ctx.globalAlpha = f.a;
+        ctx.beginPath();
+        ctx.arc(f.x, f.y, f.r, 0, Math.PI*2);
+        ctx.fillStyle = "#fff";
+        ctx.fill();
+
+        f.y += f.s;
+        f.x += f.drift;
+
+        if (f.y > h + 10) { f.y = -10; f.x = Math.random() * w; }
+        if (f.x > w + 10) f.x = -10;
+        if (f.x < -10) f.x = w + 10;
+      }
+      requestAnimationFrame(draw);
+    }
+    draw();
   </script>
 </body>
 </html>
