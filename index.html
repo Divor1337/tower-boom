@@ -7,7 +7,6 @@
   <title>타워 러쉬 — 여기서 바로 플레이</title>
   <meta name="description" content="클릭 한 번이면 바로 시작! 보너스 코드 TOWER5 (+500%)." />
 
-  <!-- OpenGraph -->
   <meta property="og:title" content="타워 러쉬 — 여기서 바로 플레이" />
   <meta property="og:description" content="보너스 코드 TOWER5 (+500%). 지금 시작!" />
   <meta property="og:type" content="website" />
@@ -45,7 +44,7 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:22px 14px 96px; /* bottom space for sticky button */
+      padding:22px 14px 96px;
     }
 
     .card{
@@ -120,7 +119,6 @@
       line-height: 1.42;
     }
 
-    /* BONUS (compact) */
     .bonusBox{
       margin: 10px 0 12px;
       padding: 12px 12px;
@@ -177,7 +175,70 @@
       color: rgba(255,255,255,.62);
     }
 
-    /* TIMER (smaller, below bonus) */
+    details.guide{
+      margin: 10px 0 14px;
+      border:1px solid rgba(255,255,255,.10);
+      border-radius: 16px;
+      background: rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+    details.guide summary{
+      list-style:none;
+      cursor:pointer;
+      padding: 12px 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      font-size: 13px;
+      color: rgba(255,255,255,.82);
+      font-weight: 800;
+      -webkit-tap-highlight-color: transparent;
+    }
+    details.guide summary::-webkit-details-marker{display:none}
+    .chev{
+      opacity:.7;
+      font-size: 12px;
+    }
+    .guideBody{
+      padding: 0 12px 12px;
+      color: rgba(255,255,255,.72);
+      font-size: 12px;
+      line-height: 1.35;
+    }
+    .steps{
+      margin: 10px 0 10px;
+      padding-left: 18px;
+    }
+    .steps li{ margin: 6px 0; }
+
+    .shots{
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding: 2px 0 6px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .shot{
+      flex: 0 0 78%;
+      scroll-snap-align:start;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background: rgba(255,255,255,.04);
+    }
+    .shot img{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+    .caption{
+      padding: 8px 10px;
+      font-size: 11px;
+      color: rgba(255,255,255,.62);
+    }
+
     .timerBox{
       margin: 10px 0 14px;
       padding: 10px 12px;
@@ -261,7 +322,6 @@
       line-height: 1.35;
     }
 
-    /* Sticky CTA */
     .sticky{
       position:fixed;
       left:0; right:0;
@@ -275,9 +335,7 @@
       z-index:999;
     }
 
-    .stickyInner{
-      width:min(520px, 94vw);
-    }
+    .stickyInner{ width:min(520px, 94vw); }
 
     .stickyBtn{
       width:100%;
@@ -320,7 +378,7 @@
       <p class="sub">클릭 한 번이면 바로 시작!<br>가볍게 즐겨보세요 😎</p>
 
       <div class="bonusBox" aria-label="Bonus code">
-        <div class="bonusTitle">🎁 보너스 혜택 +500% (코드: TOWER5)</div>
+        <div class="bonusTitle">🎁 첫 입금 +500% (코드: TOWER5)</div>
 
         <div class="codeRow">
           <div class="codePill">🔒 CODE: <span id="promoCode">TOWER5</span></div>
@@ -329,6 +387,37 @@
 
         <div class="toast" id="toast">✅ 복사하고 바로 시작하면 됩니다</div>
       </div>
+
+      <!-- ✅ Guide (hidden until click) -->
+      <details class="guide">
+        <summary>
+          📌 30초 가입 방법 보기
+          <span class="chev">▼</span>
+        </summary>
+        <div class="guideBody">
+          <ol class="steps">
+            <li><b>가입</b> 버튼 누르기</li>
+            <li>전화번호/이메일 입력</li>
+            <li><b>프로모션 코드</b>에 <b>TOWER5</b> 입력</li>
+            <li><b>등록</b> 완료 → 바로 플레이</li>
+          </ol>
+
+          <div class="shots" aria-label="How to register screenshots">
+            <div class="shot">
+              <img loading="lazy" src="./TOWER5-2.jpg" alt="가입 방법 안내 1">
+              <div class="caption">① 프로모션 코드 입력 위치</div>
+            </div>
+            <div class="shot">
+              <img loading="lazy" src="./TOWER5.jpg" alt="가입 방법 안내 2">
+              <div class="caption">② 코드 입력 후 보너스 받기</div>
+            </div>
+          </div>
+
+          <div style="margin-top:6px;opacity:.85;">
+            💡 헷갈리면 위 사진대로만 하면 됩니다.
+          </div>
+        </div>
+      </details>
 
       <div class="timerBox" aria-label="Countdown">
         <div class="timerTitle">⏳ 이번 달 혜택 종료까지</div>
@@ -355,7 +444,6 @@
     </section>
   </main>
 
-  <!-- Sticky CTA -->
   <div class="sticky" aria-label="Sticky button">
     <div class="stickyInner">
       <a class="stickyBtn" id="stickyBtn" href="#" rel="noopener">▶️ 지금 바로 플레이</a>
@@ -363,14 +451,9 @@
   </div>
 
   <script>
-    // =========================
-    // 1) YOUR TARGET LINK HERE
-    // =========================
-    const TARGET_URL = "https://lkbb.cc/eac53ced"; // ✅ UPDATED LINK
+    // ✅ YOUR TARGET LINK
+    const TARGET_URL = "https://lkbb.cc/eac53ced";
 
-    // =========================
-    // 2) KEEP QUERY PARAMS
-    // =========================
     function buildUrl(base) {
       const u = new URL(base);
       const qs = new URLSearchParams(window.location.search);
@@ -386,16 +469,12 @@
     playBtn.href = finalUrl;
     stickyBtn.href = finalUrl;
 
-    // =========================
-    // 3) LIGHT SOCIAL PROOF
-    // =========================
+    // Social proof
     const onlineEl = document.getElementById("online");
-    const baseOnline = 1200 + Math.floor(Math.random() * 2600); // 1200–3800
+    const baseOnline = 1200 + Math.floor(Math.random() * 2600);
     onlineEl.textContent = `👀 ${baseOnline.toLocaleString("ko-KR")}명 접속 중`;
 
-    // =========================
-    // 4) COUNTDOWN to end of month (KST)
-    // =========================
+    // Countdown (KST)
     const countdownEl = document.getElementById("countdown");
 
     function getKSTDate() {
@@ -405,7 +484,7 @@
     function getEndOfMonthKST() {
       const nowKST = getKSTDate();
       const y = nowKST.getFullYear();
-      const m = nowKST.getMonth(); // 0-based
+      const m = nowKST.getMonth();
       const end = new Date(new Date(`${y}-${String(m+2).padStart(2,'0')}-01T00:00:00`));
       end.setDate(0);
       end.setHours(23,59,59,999);
@@ -431,9 +510,7 @@
     tick();
     setInterval(tick, 1000);
 
-    // =========================
-    // 5) COPY PROMO CODE
-    // =========================
+    // Copy promo code
     const promo = document.getElementById("promoCode").textContent.trim();
     const copyBtn = document.getElementById("copyBtn");
     const toast = document.getElementById("toast");
