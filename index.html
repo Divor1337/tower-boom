@@ -5,19 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#0b1220" />
   <title>타워 러쉬 — 여기서 바로 시작</title>
-  <meta name="description" content="지금 바로 시작. 코드 TOWER5 입력하고 혜택 받기." />
+  <meta name="description" content="지금 바로 시작. 코드 TOWER5 첫 입금 500% 보너스." />
 
   <meta property="og:title" content="타워 러쉬 — 여기서 바로 시작" />
-  <meta property="og:description" content="코드 TOWER5 · 지금 바로 시작" />
+  <meta property="og:description" content="코드 TOWER5 · 첫 입금 500% 보너스" />
   <meta property="og:type" content="website" />
 
   <style>
     :root{
       --bg:#0b1220;
       --bg2:#0e1830;
+      --panel: rgba(255,255,255,.06);
       --stroke: rgba(255,255,255,.10);
       --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.72);
+      --muted: rgba(255,255,255,.70);
 
       --tr-yellow:#F6B318;
       --tr-yellow2:#FFCE4A;
@@ -36,8 +37,8 @@
       font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans KR", "Apple SD Gothic Neo", Segoe UI, Roboto, Arial;
       color: var(--text);
       background:
-        radial-gradient(900px 520px at 18% 10%, rgba(246,179,24,.18), transparent 60%),
-        radial-gradient(900px 520px at 82% 20%, rgba(42,168,255,.14), transparent 58%),
+        radial-gradient(900px 520px at 18% 10%, rgba(246,179,24,.22), transparent 60%),
+        radial-gradient(900px 520px at 82% 20%, rgba(42,168,255,.18), transparent 58%),
         radial-gradient(900px 700px at 50% 95%, rgba(255,255,255,.05), transparent 65%),
         linear-gradient(180deg, var(--bg2), var(--bg));
       overflow-x:hidden;
@@ -51,15 +52,16 @@
         linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
       background-size: 34px 34px;
-      mask-image: radial-gradient(circle at 50% 18%, rgba(0,0,0,.9), transparent 70%);
+      mask-image: radial-gradient(circle at 50% 20%, rgba(0,0,0,.9), transparent 70%);
       pointer-events:none;
+      opacity:.85;
     }
 
     .wrap{
       min-height:100%;
       display:flex;
       justify-content:center;
-      padding: 18px 14px 22px;
+      padding: 18px 14px 24px;
     }
 
     .card{
@@ -75,12 +77,13 @@
       -webkit-backdrop-filter: blur(10px);
     }
 
+    /* decorative glow */
     .card:before{
       content:"";
       position:absolute;
       top:-70px; right:-90px;
-      width: 320px; height: 220px;
-      background: linear-gradient(90deg, rgba(255,206,74,.50), rgba(246,179,24,.10));
+      width: 340px; height: 240px;
+      background: linear-gradient(90deg, rgba(255,206,74,.55), rgba(246,179,24,.10));
       transform: rotate(12deg);
       border-radius: 24px;
       opacity:.85;
@@ -88,22 +91,31 @@
     .card:after{
       content:"";
       position:absolute;
-      top:10px; right:18px;
-      width: 150px; height: 150px;
+      top:8px; right:14px;
+      width: 180px; height: 180px;
       background:
-        radial-gradient(circle at 30% 30%, rgba(70,211,255,.35), transparent 60%),
-        radial-gradient(circle at 70% 70%, rgba(246,179,24,.22), transparent 60%);
+        radial-gradient(circle at 30% 30%, rgba(70,211,255,.45), transparent 60%),
+        radial-gradient(circle at 70% 70%, rgba(246,179,24,.28), transparent 60%);
       opacity:.85;
       pointer-events:none;
     }
 
     .inner{
-      padding: 18px 16px 16px;
+      padding: 18px 16px 18px;
       position:relative;
       z-index:1;
     }
 
-    .badge{
+    .pillRow{
+      display:flex;
+      align-items:center;
+      justify-content:flex-start;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom: 10px;
+    }
+
+    .pill{
       display:inline-flex;
       align-items:center;
       gap:10px;
@@ -117,19 +129,20 @@
       letter-spacing:.2px;
       white-space:nowrap;
     }
-    .badge .dot{
+    .pill .dot{
       width:9px; height:9px; border-radius:999px;
       background: linear-gradient(90deg, var(--tr-yellow), var(--tr-blue));
       box-shadow: 0 0 0 6px rgba(42,168,255,.10);
     }
 
     .title{
-      margin: 14px 0 10px;
+      margin: 6px 0 8px;
       font-size: 30px;
-      line-height: 1.06;
+      line-height: 1.05;
       letter-spacing:-.6px;
       font-weight: 1000;
     }
+
     .title .tr{
       display:inline-block;
       padding: 2px 0;
@@ -140,16 +153,63 @@
          2px  2px 0 var(--tr-ink),
          0px  4px 0 rgba(0,0,0,.35);
     }
-    .title .yellow{ color: var(--tr-yellow); }
-    .title .blue{ color: var(--tr-blue); }
+    .title .tr.yellow{ color: var(--tr-yellow); }
+    .title .tr.blue{ color: var(--tr-blue); }
 
-    .hook{
+    .sub{
       margin: 0 0 14px;
+      color: var(--muted);
       font-size: 15px;
       line-height: 1.45;
+    }
+
+    /* CTA block */
+    .ctaWrap{
+      margin: 14px 0 14px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.16), rgba(255,255,255,.03));
+    }
+
+    .hintTop{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      margin-bottom: 10px;
+      flex-wrap:wrap;
+    }
+
+    .hintText{
+      font-size: 13px;
+      font-weight: 900;
       color: rgba(255,255,255,.86);
     }
-    .hook b{ color: rgba(255,255,255,.95); }
+    .hintText b{ color: rgba(255,255,255,.95); }
+
+    .arrows{
+      display:flex;
+      align-items:center;
+      gap:6px;
+      color: rgba(255,255,255,.85);
+      font-weight: 900;
+      font-size: 12px;
+      opacity:.92;
+    }
+    .arrows .a{
+      display:inline-block;
+      animation: bob 1.05s ease-in-out infinite;
+      filter: drop-shadow(0 10px 18px rgba(0,0,0,.35));
+    }
+    .arrows .a:nth-child(2){ animation-delay:.12s }
+    .arrows .a:nth-child(3){ animation-delay:.24s }
+
+    @keyframes bob{
+      0%,100%{ transform: translateY(0) }
+      50%{ transform: translateY(4px) }
+    }
 
     .cta{
       display:block;
@@ -160,7 +220,7 @@
       text-align:center;
       padding: 18px 16px;
       border-radius: 18px;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 1000;
       letter-spacing: .2px;
       color: #0b0f14;
@@ -169,36 +229,72 @@
       transition: transform .12s ease, filter .12s ease;
       user-select:none;
       -webkit-tap-highlight-color: transparent;
+      position:relative;
+      overflow:hidden;
     }
     .cta:active{ transform: translateY(1px) scale(.995); filter: brightness(.98); }
 
-    .mini{
-      margin-top: 10px;
-      font-size: 12px;
-      color: rgba(255,255,255,.70);
-      line-height: 1.45;
+    /* subtle shine */
+    .cta:before{
+      content:"";
+      position:absolute;
+      top:-40%;
+      left:-30%;
+      width: 50%;
+      height: 180%;
+      transform: rotate(18deg);
+      background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,.28), rgba(255,255,255,0));
+      animation: shine 2.3s ease-in-out infinite;
+      opacity:.65;
+    }
+    @keyframes shine{
+      0%{ transform: translateX(-40%) rotate(18deg); opacity:.0 }
+      25%{ opacity:.65 }
+      60%{ transform: translateX(220%) rotate(18deg); opacity:.0 }
+      100%{ opacity:0 }
     }
 
+    .ctaNote{
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.68);
+      line-height: 1.35;
+    }
+
+    /* Promo */
     .promo{
-      margin: 14px 0 12px;
+      margin: 10px 0 0;
       padding: 12px 12px;
       border-radius: 18px;
       border:1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(246,179,24,.12), rgba(42,168,255,.08));
+      background:
+        linear-gradient(180deg, rgba(246,179,24,.14), rgba(42,168,255,.10));
+      box-shadow:
+        0 14px 40px rgba(246,179,24,.08),
+        0 14px 40px rgba(42,168,255,.08);
     }
+
     .promoTitle{
       font-weight: 1000;
-      font-size: 13px;
+      font-size: 14px;
       letter-spacing:.2px;
-      margin-bottom: 8px;
-      color: rgba(255,255,255,.92);
+      margin-bottom: 10px;
     }
+    .promoTitle small{
+      display:block;
+      margin-top: 4px;
+      font-size: 12px;
+      color: rgba(255,255,255,.72);
+      font-weight: 800;
+    }
+
     .codeRow{
       display:flex;
       gap:10px;
       align-items:center;
       flex-wrap:wrap;
     }
+
     .codePill{
       display:inline-flex;
       align-items:center;
@@ -211,6 +307,7 @@
       font-weight: 1000;
       letter-spacing: .8px;
     }
+
     .copyBtn{
       border:0;
       cursor:pointer;
@@ -223,32 +320,19 @@
       box-shadow: 0 12px 28px rgba(246,179,24,.14);
       -webkit-tap-highlight-color: transparent;
       transition: transform .12s ease, filter .12s ease;
-      white-space:nowrap;
     }
     .copyBtn:active{ transform: translateY(1px); filter: brightness(.98); }
 
-    .howto{
+    .toast{
       margin-top: 10px;
       font-size: 12px;
-      color: rgba(255,255,255,.78);
-      line-height: 1.5;
-    }
-    .howto b{ color: rgba(255,255,255,.94); }
-
-    .help{
-      margin-top: 12px;
-      font-size: 12px;
-      color: rgba(255,255,255,.60);
+      color: rgba(255,255,255,.70);
       line-height: 1.35;
-      text-align:center;
     }
 
-    .fine{
-      margin-top: 10px;
-      font-size: 11px;
-      color: rgba(255,255,255,.46);
-      text-align:center;
-      line-height: 1.35;
+    @media (max-width: 380px){
+      .title{ font-size: 28px; }
+      .cta{ font-size: 18px; }
     }
   </style>
 </head>
@@ -258,46 +342,51 @@
     <section class="card" role="region" aria-label="Tower Rush landing">
       <div class="inner">
 
-        <div class="badge"><span class="dot"></span> 지금이 기회일 때만 👀</div>
+        <div class="pillRow">
+          <div class="pill"><span class="dot"></span> 지금이 기회일 때만 👀</div>
+        </div>
 
         <h1 class="title">
           <span class="tr yellow">타워</span> <span class="tr blue">러쉬</span><br>
-          <span style="opacity:.92;">여기서 바로 시작</span>
+          여기서 <span style="color:var(--tr-yellow2);font-weight:1000;">바로</span> 시작
         </h1>
 
-        <p class="hook">
-          <b>지금 안 하면</b> 괜히 손해 보는 느낌…<br>
-          딱 한 번만 눌러봐 👇 <span style="opacity:.8;">(안 맞으면 그냥 뒤로)</span>
+        <p class="sub">
+          지금 안 하면 괜히 손해 보는 느낌…<br>
+          <b style="color:rgba(255,255,255,.92);">딱 한 번만</b> 눌러봐 👇
         </p>
 
-        <!-- IMPORTANT: real href fallback so it works even if JS fails -->
-        <a class="cta" id="playBtn" href="https://lkpf.pro/c50a12" rel="noopener">
-          ▶️ 지금 바로 시작하기
-        </a>
+        <div class="ctaWrap">
+          <div class="hintTop">
+            <div class="hintText">👇 <b>여기</b> 누르면 바로 시작</div>
+            <div class="arrows" aria-hidden="true">
+              <span class="a">⬇️</span><span class="a">⬇️</span><span class="a">⬇️</span>
+            </div>
+          </div>
 
-        <div class="mini">
-          💡 “이거 왜 되는지” 궁금하면… 일단 해보면 느낌 옴 ㅋㅋ
+          <a class="cta" id="playBtn" href="#" rel="noopener">
+            ▶️ 지금 바로 시작하기
+          </a>
+
+          <div class="ctaNote">
+            “이거 왜 되는지” 궁금하면… 일단 해보면 느낌 옴 ㅋㅋ
+          </div>
         </div>
 
         <div class="promo" aria-label="Promo code">
-          <div class="promoTitle">🎁 혜택 받으려면 코드만 입력</div>
+          <div class="promoTitle">
+            🎁 첫 입금 <b>500%</b> 보너스
+            <small>혜택 받으려면 코드만 입력하면 됨</small>
+          </div>
 
           <div class="codeRow">
             <div class="codePill">🔒 CODE: <span id="promoCode">TOWER5</span></div>
             <button class="copyBtn" id="copyBtn" type="button">코드 복사</button>
           </div>
 
-          <div class="howto">
-            <b>사용법:</b> 가입할 때 <b>프로모션 코드</b> 칸에 <b>TOWER5</b> 입력 → 끝.
+          <div class="toast" id="toast">
+            ✅ 사용법: 가입할 때 “프로모션 코드” 칸에 <b>TOWER5</b> 입력 → 끝.
           </div>
-        </div>
-
-        <div class="help">
-          인스타에서 안 열리면: 오른쪽 위 <b>⋯</b> → <b>브라우저에서 열기</b>
-        </div>
-
-        <div class="fine">
-          본 페이지는 게임 안내용입니다. 조건은 사이트에서 확인하세요.
         </div>
 
       </div>
@@ -308,37 +397,32 @@
     // =========================
     // 1) YOUR TARGET LINK HERE
     // =========================
-    const TARGET_URL = "https://lkpf.pro/c50a12"; // <-- твой текущий линк
+    const TARGET_URL = "https://lkpf.pro/c50a12"; // <-- твоя ссылка
 
     // =========================
-    // 2) KEEP QUERY PARAMS (safe)
+    // 2) KEEP QUERY PARAMS
     // =========================
     function buildUrl(base) {
-      try {
-        const u = new URL(base);
-        const qs = new URLSearchParams(window.location.search);
-        for (const [k, v] of qs.entries()) {
-          if (!u.searchParams.has(k)) u.searchParams.set(k, v);
-        }
-        return u.toString();
-      } catch (e) {
-        return base;
+      const u = new URL(base);
+      const qs = new URLSearchParams(window.location.search);
+      for (const [k, v] of qs.entries()) {
+        if (!u.searchParams.has(k)) u.searchParams.set(k, v);
       }
+      return u.toString();
     }
 
     const finalUrl = buildUrl(TARGET_URL);
-    const playBtn = document.getElementById("playBtn");
-    playBtn.href = finalUrl;
+    document.getElementById("playBtn").href = finalUrl;
 
     // =========================
     // 3) COPY PROMO CODE
     // =========================
     const promo = document.getElementById("promoCode").textContent.trim();
     const copyBtn = document.getElementById("copyBtn");
-    let copied = false;
+    const toast = document.getElementById("toast");
+    const baseToast = toast.textContent;
 
     async function copyCode() {
-      if (copied) return;
       try {
         await navigator.clipboard.writeText(promo);
       } catch (e) {
@@ -349,16 +433,12 @@
         document.execCommand("copy");
         document.body.removeChild(ta);
       }
-      copied = true;
-      copyBtn.textContent = "✅ 복사됨";
-      setTimeout(() => { copied = false; copyBtn.textContent = "코드 복사"; }, 1600);
+      toast.textContent = "✅ 복사 완료! 가입할 때 코드 칸에 붙여넣기 🔥";
+      setTimeout(() => toast.textContent = baseToast, 2200);
     }
 
     copyBtn.addEventListener("click", copyCode);
-
-    // reduce tap delay
-    playBtn.addEventListener("touchstart", () => {}, { passive:true });
-    copyBtn.addEventListener("touchstart", () => {}, { passive:true });
+    document.getElementById("playBtn").addEventListener("touchstart", () => {}, { passive:true });
   </script>
 </body>
 </html>
