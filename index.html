@@ -15,15 +15,12 @@
     :root{
       --bg:#0d1322;
       --bg2:#111b33;
-      --card:rgba(255,255,255,.08);
       --stroke:rgba(255,255,255,.12);
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.72);
 
       --y:#f6b318;
-      --y2:#ffd666;
       --b:#3aa7ff;
-      --b2:#78d4ff;
       --ink:#0a0f19;
 
       --r:24px;
@@ -194,7 +191,7 @@
       margin-top:10px;
       color:rgba(255,255,255,.68);
       font-size:12px;
-      line-height:1.4;
+      line-height:1.45;
       text-align:center;
       font-weight:700;
     }
@@ -269,9 +266,145 @@
       font-weight:800;
     }
 
+    details.guide{
+      margin-top:16px;
+      border:1px solid rgba(255,255,255,.12);
+      border-radius:18px;
+      background:rgba(0,0,0,.14);
+      overflow:hidden;
+    }
+
+    details.guide summary{
+      list-style:none;
+      cursor:pointer;
+      padding:14px 14px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      color:rgba(255,255,255,.92);
+      font-size:14px;
+      font-weight:1000;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    details.guide summary::-webkit-details-marker{display:none}
+
+    .guide-arrow{
+      opacity:.72;
+      font-size:12px;
+      transition:transform .18s ease;
+    }
+
+    details[open] .guide-arrow{
+      transform:rotate(180deg);
+    }
+
+    .guide-body{
+      padding:0 14px 14px;
+    }
+
+    .guide-copy{
+      color:rgba(255,255,255,.72);
+      font-size:12px;
+      line-height:1.5;
+      font-weight:700;
+      margin:0 0 12px;
+    }
+
+    .steps{
+      display:grid;
+      gap:10px;
+    }
+
+    .step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      border-radius:14px;
+      padding:11px 11px;
+    }
+
+    .step-num{
+      min-width:24px;
+      height:24px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:12px;
+      font-weight:1000;
+      color:#0b1018;
+      background:linear-gradient(90deg, var(--y), var(--b));
+      margin-top:1px;
+    }
+
+    .step-text{
+      color:rgba(255,255,255,.88);
+      font-size:13px;
+      line-height:1.45;
+      font-weight:800;
+    }
+
+    .step-text small{
+      display:block;
+      margin-top:3px;
+      color:rgba(255,255,255,.58);
+      font-size:11px;
+      font-weight:700;
+    }
+
+    .shots{
+      margin-top:12px;
+      display:flex;
+      gap:10px;
+      overflow-x:auto;
+      scroll-snap-type:x mandatory;
+      padding-bottom:4px;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .shot{
+      flex:0 0 78%;
+      scroll-snap-align:start;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      overflow:hidden;
+      background:rgba(255,255,255,.04);
+    }
+
+    .shot img{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+
+    .caption{
+      padding:8px 10px;
+      font-size:11px;
+      color:rgba(255,255,255,.62);
+      line-height:1.35;
+      font-weight:700;
+    }
+
+    .note{
+      margin-top:14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.08);
+      background:rgba(255,255,255,.03);
+      padding:11px 12px;
+      color:rgba(255,255,255,.72);
+      font-size:12px;
+      line-height:1.45;
+      font-weight:700;
+    }
+
     @media (max-width:380px){
       .title{font-size:28px}
       .cta{font-size:18px; padding:17px 14px}
+      .shot{flex-basis:84%}
     }
   </style>
 </head>
@@ -292,7 +425,7 @@
           </h1>
           <p class="sub">
             그냥 바로 하면 됨 👇<br>
-            코드만 넣으면 끝.
+            처음이면 아래 안내만 한번 보면 됨.
           </p>
         </div>
 
@@ -301,12 +434,12 @@
         </a>
 
         <div class="hint">
-          복잡한 거 없음. 바로 시작 가능
+          가입할 때 코드만 넣으면 됨
         </div>
 
         <div class="promo" aria-label="Promo code">
           <p class="promo-title">혜택 받으려면 코드만 입력</p>
-          <p class="promo-sub">가입할 때 프로모션 코드 칸에 넣으면 됨</p>
+          <p class="promo-sub">가입할 때 프로모션 코드 칸에 넣으면 바로 적용됨</p>
 
           <div class="code-row">
             <div class="code-pill">🔒 CODE: <span id="promoCode">TOWER5</span></div>
@@ -315,6 +448,77 @@
 
           <div class="toast" id="toast">복사 → 가입할 때 코드 칸에 붙여넣기</div>
         </div>
+
+        <details class="guide">
+          <summary>
+            <span>📌 처음이면 이것만 보면 됨</span>
+            <span class="guide-arrow">▼</span>
+          </summary>
+
+          <div class="guide-body">
+            <p class="guide-copy">
+              복잡한 거 없음. 아래 순서대로만 하면 됨.
+            </p>
+
+            <div class="steps">
+              <div class="step">
+                <div class="step-num">1</div>
+                <div class="step-text">
+                  아래 버튼 눌러서 사이트로 이동
+                  <small>지금 바로 하기 버튼 누르면 됨</small>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-num">2</div>
+                <div class="step-text">
+                  가입 먼저 진행
+                  <small>전화번호 / 이메일로 가입하면 됨</small>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-num">3</div>
+                <div class="step-text">
+                  프로모션 코드 칸에 <b>TOWER5</b> 입력
+                  <small>복사한 코드 그대로 붙여넣으면 됨</small>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-num">4</div>
+                <div class="step-text">
+                  가입 끝나면 충전까지 진행
+                  <small>가입만 하고 끝내면 적용 놓칠 수 있음</small>
+                </div>
+              </div>
+
+              <div class="step">
+                <div class="step-num">5</div>
+                <div class="step-text">
+                  적용된 상태 확인하고 바로 시작
+                  <small>코드 적용된 뒤에 플레이하면 됨</small>
+                </div>
+              </div>
+            </div>
+
+            <div class="shots" aria-label="How to register screenshots">
+              <div class="shot">
+                <img loading="lazy" src="./TOWER5-2.jpg" alt="프로모션 코드 위치 예시">
+                <div class="caption">① 가입할 때 프로모션 코드 칸 확인</div>
+              </div>
+              <div class="shot">
+                <img loading="lazy" src="./TOWER5.jpg" alt="코드 입력 예시">
+                <div class="caption">② 코드 입력 후 적용 확인</div>
+              </div>
+            </div>
+
+            <div class="note">
+              가입만 하고 끝내면 적용 안 된 줄 알고 넘기는 경우 있음.<br>
+              코드 입력 → 가입 완료 → 충전 단계까지 확인하면 됨.
+            </div>
+          </div>
+        </details>
 
       </div>
     </section>
@@ -336,7 +540,8 @@
       }
     }
 
-    document.getElementById("playBtn").href = buildUrl(TARGET_URL);
+    const finalUrl = buildUrl(TARGET_URL);
+    document.getElementById("playBtn").href = finalUrl;
 
     const promo = document.getElementById("promoCode").textContent.trim();
     const copyBtn = document.getElementById("copyBtn");
@@ -367,3 +572,5 @@
   </script>
 </body>
 </html>
+
+
