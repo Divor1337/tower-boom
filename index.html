@@ -1,368 +1,705 @@
+<!doctype html>
 <html lang="ko">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#0d1322" />
-  <title>타워 러쉬</title>
-  <meta name="description" content="타워 러쉬 바로 시작" />
-
-  <meta property="og:title" content="타워 러쉬" />
-  <meta property="og:description" content="여기서 바로 시작" />
-  <meta property="og:type" content="website" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>게임 선택</title>
+  <meta name="description" content="실시간 인기 게임을 선택하고 보너스를 확인하세요." />
 
   <style>
-    :root{
-      --bg:#0d1322;
-      --bg2:#111b33;
-      --card:rgba(255,255,255,.08);
-      --stroke:rgba(255,255,255,.12);
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.72);
-
-      --y:#f6b318;
-      --y2:#ffd666;
-      --b:#3aa7ff;
-      --b2:#78d4ff;
-      --ink:#0a0f19;
-
-      --r:24px;
-      --shadow:0 18px 60px rgba(0,0,0,.42);
+    :root {
+      --bg: #070914;
+      --card: rgba(16, 22, 42, 0.86);
+      --card-2: rgba(19, 27, 52, 0.94);
+      --stroke: rgba(255, 255, 255, 0.11);
+      --stroke-strong: rgba(255, 255, 255, 0.18);
+      --text: #ffffff;
+      --muted: rgba(255, 255, 255, 0.68);
+      --soft: rgba(255, 255, 255, 0.46);
+      --green: #52ff9a;
+      --red: #ff3f64;
+      --yellow: #ffd15a;
+      --blue: #6ea8ff;
+      --purple: #b06cff;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --radius: 26px;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, "Noto Sans KR", "Apple SD Gothic Neo", Segoe UI, Roboto, Arial, sans-serif;
-      color:var(--text);
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", "Apple SD Gothic Neo", "Segoe UI", sans-serif;
+      color: var(--text);
       background:
-        radial-gradient(900px 520px at 15% 10%, rgba(246,179,24,.20), transparent 58%),
-        radial-gradient(900px 520px at 85% 16%, rgba(58,167,255,.18), transparent 55%),
-        linear-gradient(180deg, var(--bg2), var(--bg));
-      overflow-x:hidden;
+        radial-gradient(circle at 50% -10%, rgba(95, 54, 255, 0.38), transparent 34%),
+        radial-gradient(circle at 0% 30%, rgba(255, 54, 122, 0.16), transparent 38%),
+        radial-gradient(circle at 100% 70%, rgba(40, 168, 255, 0.13), transparent 34%),
+        var(--bg);
+      overflow-x: hidden;
     }
 
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size:32px 32px;
-      mask-image: radial-gradient(circle at 50% 24%, rgba(0,0,0,.95), transparent 72%);
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, black, transparent 82%);
     }
 
-    .wrap{
-      min-height:100%;
-      display:flex;
-      justify-content:center;
-      align-items:flex-start;
-      padding:24px 14px;
+    .page {
+      position: relative;
+      width: min(100%, 520px);
+      margin: 0 auto;
+      padding: 18px 14px 28px;
     }
 
-    .card{
-      width:min(560px, 94vw);
-      border:1px solid var(--stroke);
-      background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));
-      border-radius:var(--r);
-      box-shadow:var(--shadow);
-      overflow:hidden;
-      position:relative;
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+
+    .stat {
+      min-height: 54px;
+      padding: 10px 12px;
+      border: 1px solid var(--stroke);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.055);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.18);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .online-dot {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-right: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 16px var(--green);
+      vertical-align: 1px;
+      animation: pulse 1.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(0.72); opacity: 0.58; }
+    }
+
+    .promo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 48px;
+      margin: 10px 0 12px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 209, 90, 0.32);
+      border-radius: 18px;
+      background: linear-gradient(135deg, rgba(255, 209, 90, 0.18), rgba(255, 63, 100, 0.10));
+      color: #fff5cc;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      box-shadow: 0 14px 44px rgba(255, 93, 20, 0.12);
+    }
+
+    .promo b {
+      color: #ffffff;
+      letter-spacing: 0.06em;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin: 8px 0 16px;
+      padding: 0 2px;
+    }
+
+    .hero h1 {
+      margin: 0;
+      font-size: 26px;
+      letter-spacing: -0.055em;
+      line-height: 1.08;
+    }
+
+    .hero p {
+      margin: 6px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .info-btn, .timer {
+      height: 38px;
+      border: 1px solid var(--stroke-strong);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.07);
+      color: #fff;
       backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.20);
     }
 
-    .card::before{
-      content:"";
-      position:absolute;
-      top:-75px;
-      right:-80px;
-      width:300px;
-      height:210px;
-      background:linear-gradient(90deg, rgba(246,179,24,.52), rgba(246,179,24,.08));
-      transform:rotate(12deg);
-      border-radius:28px;
-      opacity:.9;
+    .info-btn {
+      width: 38px;
+      cursor: pointer;
+      font-size: 16px;
+      font-weight: 900;
     }
 
-    .card::after{
-      content:"";
-      position:absolute;
-      top:8px;
-      right:12px;
-      width:150px;
-      height:150px;
+    .timer {
+      display: grid;
+      place-items: center;
+      min-width: 76px;
+      padding: 0 14px;
+      font-size: 14px;
+      font-weight: 900;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .game-card {
+      position: relative;
+      overflow: hidden;
+      min-height: 236px;
+      border: 1px solid var(--stroke);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, var(--card-2), var(--card));
+      box-shadow: var(--shadow);
+      isolation: isolate;
+      transform: translateZ(0);
+    }
+
+    .game-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.09), transparent 38%, rgba(0, 0, 0, 0.30));
+      z-index: 2;
+    }
+
+    .media {
+      position: relative;
+      height: 142px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .media video,
+    .media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.02);
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      z-index: 5;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #101010;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 1000;
+      letter-spacing: 0.02em;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+    }
+
+    .badge.hot { background: linear-gradient(135deg, #ffdf65, #ff4867); color: #fff; }
+    .badge.new { background: linear-gradient(135deg, #7dffb1, #20d2ff); color: #072116; }
+    .badge.vip { background: linear-gradient(135deg, #ffd15a, #b06cff); color: #fff; }
+    .badge.top { background: linear-gradient(135deg, #ffffff, #76a9ff); color: #09111f; }
+
+    .content {
+      position: relative;
+      z-index: 4;
+      padding: 13px 12px 14px;
+    }
+
+    .content h2 {
+      margin: 0 0 11px;
+      min-height: 38px;
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      line-height: 1.12;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .play-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      min-height: 43px;
+      border: 0;
+      border-radius: 15px;
+      background: linear-gradient(135deg, #ff325d, #ff7a2f);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 1000;
+      box-shadow: 0 14px 32px rgba(255, 69, 55, 0.28);
+      cursor: pointer;
+      transition: transform 0.16s ease, filter 0.16s ease;
+    }
+
+    .play-btn:active {
+      transform: scale(0.97);
+      filter: brightness(0.94);
+    }
+
+    .play-btn.secondary {
+      background: linear-gradient(135deg, #5868ff, #b06cff);
+      box-shadow: 0 14px 32px rgba(104, 88, 255, 0.26);
+    }
+
+    .ticker {
+      display: none;
+    }
+
+    .win-toast {
+      position: fixed;
+      left: 50%;
+      bottom: 18px;
+      z-index: 40;
+      width: min(calc(100% - 28px), 430px);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 13px;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 18px;
+      background: rgba(11, 16, 31, 0.92);
+      box-shadow: 0 18px 58px rgba(0, 0, 0, 0.46);
+      backdrop-filter: blur(18px);
+      transform: translate(-50%, 120px);
+      opacity: 0;
+      pointer-events: none;
+      transition: transform 0.42s ease, opacity 0.42s ease;
+    }
+
+    .win-toast.is-visible {
+      transform: translate(-50%, 0);
+      opacity: 1;
+    }
+
+    .flag {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.10);
+      font-size: 21px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.13);
+    }
+
+    .win-text {
+      min-width: 0;
+      flex: 1;
+    }
+
+    .win-title {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #fff;
+      font-size: 13px;
+      font-weight: 1000;
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .win-title b {
+      color: var(--yellow);
+    }
+
+    .win-subtitle {
+      margin-top: 3px;
+      color: rgba(255, 255, 255, 0.58);
+      font-size: 11px;
+      font-weight: 750;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .win-amount {
+      flex: 0 0 auto;
+      padding: 7px 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(82, 255, 154, 0.22), rgba(255, 209, 90, 0.14));
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 1000;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(0, 0, 0, 0.62);
+      backdrop-filter: blur(10px);
+    }
+
+    .modal.is-open {
+      display: flex;
+    }
+
+    .modal-card {
+      width: min(100%, 420px);
+      position: relative;
+      padding: 22px 18px 18px;
+      border: 1px solid var(--stroke-strong);
+      border-radius: 26px;
       background:
-        radial-gradient(circle at 30% 30%, rgba(120,212,255,.38), transparent 60%),
-        radial-gradient(circle at 70% 70%, rgba(246,179,24,.22), transparent 60%);
-      opacity:.9;
-      pointer-events:none;
+        radial-gradient(circle at 50% 0%, rgba(255, 63, 100, 0.18), transparent 38%),
+        #101522;
+      box-shadow: 0 28px 100px rgba(0, 0, 0, 0.55);
     }
 
-    .inner{
-      position:relative;
-      z-index:1;
-      padding:20px 16px 18px;
+    .close {
+      position: absolute;
+      top: 11px;
+      right: 12px;
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 22px;
+      cursor: pointer;
     }
 
-    .pill{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:8px 12px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:rgba(0,0,0,.18);
-      color:rgba(255,255,255,.88);
-      font-size:12px;
-      font-weight:900;
-      letter-spacing:.2px;
-      white-space:nowrap;
+    .modal-card h3 {
+      margin: 0 0 8px;
+      font-size: 22px;
+      letter-spacing: -0.04em;
     }
 
-    .dot{
-      width:9px;
-      height:9px;
-      border-radius:999px;
-      background:linear-gradient(90deg, var(--y), var(--b));
-      box-shadow:0 0 0 6px rgba(58,167,255,.10);
+    .modal-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+      font-weight: 650;
     }
 
-    .hero{
-      margin-top:14px;
+    .code-box {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px;
+      border: 1px dashed rgba(255, 209, 90, 0.48);
+      border-radius: 16px;
+      background: rgba(255, 209, 90, 0.09);
     }
 
-    .title{
-      margin:0 0 8px;
-      font-size:31px;
-      line-height:1.06;
-      letter-spacing:-.6px;
-      font-weight:1000;
+    .code-box span {
+      color: var(--soft);
+      font-size: 12px;
+      font-weight: 800;
     }
 
-    .tr{
-      display:inline-block;
-      text-shadow:
-        -2px -2px 0 var(--ink),
-         2px -2px 0 var(--ink),
-        -2px  2px 0 var(--ink),
-         2px  2px 0 var(--ink),
-         0px  4px 0 rgba(0,0,0,.32);
-      padding:2px 0;
+    .code-box b {
+      display: block;
+      margin-top: 4px;
+      color: #fff;
+      font-size: 22px;
+      letter-spacing: 0.08em;
     }
 
-    .tr.y{ color:var(--y); }
-    .tr.b{ color:var(--b); }
-
-    .sub{
-      margin:0 0 16px;
-      color:var(--muted);
-      font-size:15px;
-      line-height:1.5;
-      font-weight:700;
+    .copy-btn {
+      border: 0;
+      border-radius: 13px;
+      padding: 11px 14px;
+      background: #fff;
+      color: #111827;
+      font-weight: 1000;
+      cursor: pointer;
     }
 
-    .cta{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width:100%;
-      margin-top:6px;
-      padding:18px 16px;
-      border:0;
-      border-radius:20px;
-      text-decoration:none;
-      color:#0b1018;
-      font-size:19px;
-      font-weight:1000;
-      letter-spacing:.2px;
-      background:linear-gradient(90deg, var(--y), var(--b));
-      box-shadow:0 16px 38px rgba(246,179,24,.17), 0 16px 38px rgba(58,167,255,.15);
-      transition:transform .12s ease, filter .12s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .cta:active{
-      transform:translateY(1px) scale(.995);
-      filter:brightness(.98);
-    }
-
-    .hint{
-      margin-top:10px;
-      color:rgba(255,255,255,.68);
-      font-size:12px;
-      line-height:1.4;
-      text-align:center;
-      font-weight:700;
-    }
-
-    .promo{
-      margin-top:16px;
-      border:1px solid rgba(255,255,255,.12);
-      border-radius:18px;
-      background:linear-gradient(180deg, rgba(246,179,24,.13), rgba(58,167,255,.10));
-      padding:13px 12px 12px;
-    }
-
-    .promo-title{
-      font-size:14px;
-      font-weight:1000;
-      letter-spacing:.1px;
-      margin:0;
-    }
-
-    .promo-sub{
-      margin:5px 0 0;
-      color:rgba(255,255,255,.72);
-      font-size:12px;
-      line-height:1.45;
-      font-weight:800;
-    }
-
-    .code-row{
-      margin-top:12px;
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-
-    .code-pill{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:11px 13px;
-      border-radius:14px;
-      background:rgba(0,0,0,.20);
-      border:1px solid rgba(255,255,255,.14);
-      font-size:15px;
-      font-weight:1000;
-      letter-spacing:.8px;
-    }
-
-    .copy-btn{
-      border:0;
-      cursor:pointer;
-      padding:11px 13px;
-      border-radius:14px;
-      background:linear-gradient(90deg, var(--y), var(--b));
-      color:#0b1018;
-      font-size:13px;
-      font-weight:1000;
-      -webkit-tap-highlight-color: transparent;
-      transition:transform .12s ease, filter .12s ease;
-    }
-
-    .copy-btn:active{
-      transform:translateY(1px);
-      filter:brightness(.98);
-    }
-
-    .toast{
-      margin-top:8px;
-      color:rgba(255,255,255,.68);
-      font-size:12px;
-      line-height:1.4;
-      font-weight:800;
-    }
-
-    @media (max-width:380px){
-      .title{font-size:28px}
-      .cta{font-size:18px; padding:17px 14px}
+    @media (max-width: 380px) {
+      .page { padding-inline: 10px; }
+      .grid { gap: 10px; }
+      .game-card { min-height: 224px; border-radius: 22px; }
+      .media { height: 132px; }
+      .content h2 { font-size: 14px; }
+      .play-btn { font-size: 13px; min-height: 40px; }
+      .hero h1 { font-size: 23px; }
     }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <section class="card" aria-label="Tower Rush landing">
-      <div class="inner">
-
-        <div class="pill">
-          <span class="dot"></span>
-          요즘 많이 하는 그 게임
-        </div>
-
-        <div class="hero">
-          <h1 class="title">
-            <span class="tr y">타워</span> <span class="tr b">러쉬</span><br>
-            여기서 바로 시작
-          </h1>
-          <p class="sub">
-            그냥 바로 하면 됨 👇<br>
-            코드만 넣으면 끝.
-          </p>
-        </div>
-
-        <a class="cta" id="playBtn" href="#" rel="noopener">
-          ▶ 지금 바로 하기
-        </a>
-
-        <div class="hint">
-          복잡한 거 없음. 바로 시작 가능
-        </div>
-
-        <div class="promo" aria-label="Promo code">
-          <p class="promo-title">혜택 받으려면 코드만 입력</p>
-          <p class="promo-sub">가입할 때 프로모션 코드 칸에 넣으면 됨</p>
-
-          <div class="code-row">
-            <div class="code-pill">🔒 CODE: <span id="promoCode">TOWER5</span></div>
-            <button class="copy-btn" id="copyBtn" type="button">코드 복사</button>
-          </div>
-
-          <div class="toast" id="toast">복사 → 가입할 때 코드 칸에 붙여넣기</div>
-        </div>
-
+  <main class="page">
+    <section class="topbar" aria-label="실시간 통계">
+      <div class="stat">
+        <strong><i class="online-dot"></i><span id="onlineCount">2845</span>명</strong>
+        <span>지금 플레이 중</span>
+      </div>
+      <div class="stat">
+        <strong>+<span id="winCount">123</span>명</strong>
+        <span>최근 1시간 보너스 획득</span>
       </div>
     </section>
+
+    <section class="promo">
+      프로모션 코드: <b id="promoInline">XLSOFT</b> · 보너스 500% + 500FS
+    </section>
+
+    <section class="hero">
+      <div>
+        <h1>지금 인기 게임</h1>
+        <p>원하는 게임을 선택하고 바로 시작하세요</p>
+      </div>
+      <div class="hero-actions">
+        <button class="info-btn" type="button" aria-label="보너스 안내 열기" id="openModal">i</button>
+        <div class="timer" id="timer">03:00</div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="게임 목록">
+      <article class="game-card">
+        <span class="badge hot">HOT</span>
+        <div class="media">
+          <img src="assets/game-1.gif" alt="AVIAMASTERS 2 미리보기" loading="eager" decoding="async" />
+        </div>
+        <div class="content">
+          <h2>AVIAMASTERS 2</h2>
+          <a class="play-btn" href="https://1womhe.com" rel="nofollow noopener noreferrer">▶ 시작하기</a>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <span class="badge new">NEW</span>
+        <div class="media">
+          <img src="assets/game-2.gif" alt="TOWER RUSH 미리보기" loading="lazy" decoding="async" />
+        </div>
+        <div class="content">
+          <h2>TOWER RUSH</h2>
+          <a class="play-btn" href="https://1womhe.com" rel="nofollow noopener noreferrer">▶ 플레이</a>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <span class="badge vip">VIP</span>
+        <div class="media">
+          <img src="assets/game-3.gif" alt="TAPPY BIRD 미리보기" loading="lazy" decoding="async" />
+        </div>
+        <div class="content">
+          <h2>TAPPY BIRD</h2>
+          <a class="play-btn" href="https://1womhe.com" rel="nofollow noopener noreferrer">▶ 플레이</a>
+        </div>
+      </article>
+
+      <article class="game-card">
+        <span class="badge top">TOP</span>
+        <div class="media">
+          <img src="assets/game-4.gif" alt="LUCKY JET 미리보기" loading="lazy" decoding="async" />
+        </div>
+        <div class="content">
+          <h2>LUCKY JET</h2>
+          <a class="play-btn" href="https://1womhe.com" rel="nofollow noopener noreferrer">▶ 플레이</a>
+        </div>
+      </article>
+    </section>
+
+    <section class="ticker" id="ticker" aria-live="polite"></section>
   </main>
 
+  <aside class="win-toast" id="winToast" aria-live="polite">
+    <div class="flag">🇰🇷</div>
+    <div class="win-text">
+      <div class="win-title"><span id="toastId">ID: min***</span> 님 <b>JACKPOT</b></div>
+      <div class="win-subtitle" id="toastGame">AVIAMASTERS 2에서 방금 당첨</div>
+    </div>
+    <div class="win-amount" id="toastAmount">₩438,000</div>
+  </aside>
+
+  <div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="bonusTitle">
+    <div class="modal-card">
+      <button class="close" type="button" id="closeModal" aria-label="닫기">×</button>
+      <h3 id="bonusTitle">보너스 받는 방법</h3>
+      <p>회원가입 후 아래 프로모션 코드를 입력하면 500% 보너스와 500FS 혜택을 받을 수 있습니다.</p>
+      <div class="code-box">
+        <div>
+          <span>프로모션 코드</span>
+          <b id="promoCode">XLSOFT</b>
+        </div>
+        <button class="copy-btn" type="button" id="copyBtn">복사</button>
+      </div>
+    </div>
+  </div>
+
   <script>
-    const TARGET_URL = "https://lkbb.cc/c5a8";
+    const CONFIG = {
+      onlineMin: 2360,
+      onlineMax: 3920,
+      onlineStart: 2845,
+      winsMin: 98,
+      winsMax: 178,
+      winsStart: 123,
+      countdownSeconds: 180,
+      promoCode: "XLSOFT",
+      jackpotItems: [
+        { id: "kim***", game: "AVIAMASTERS 2", amount: "₩438,000" },
+        { id: "min***", game: "TOWER RUSH", amount: "₩216,000" },
+        { id: "seo***", game: "TAPPY BIRD", amount: "₩792,000" },
+        { id: "han***", game: "LUCKY JET", amount: "₩351,000" },
+        { id: "woo***", game: "AVIAMASTERS 2", amount: "₩584,000" }
+      ]
+    };
 
-    function buildUrl(base) {
-      try {
-        const u = new URL(base);
-        const qs = new URLSearchParams(window.location.search);
-        for (const [k, v] of qs.entries()) {
-          if (!u.searchParams.has(k)) u.searchParams.set(k, v);
-        }
-        return u.toString();
-      } catch (e) {
-        return base;
-      }
+    const $ = (selector) => document.querySelector(selector);
+
+    const onlineCount = $("#onlineCount");
+    const winCount = $("#winCount");
+    const timer = $("#timer");
+    const ticker = $("#ticker");
+    const winToast = $("#winToast");
+    const toastId = $("#toastId");
+    const toastGame = $("#toastGame");
+    const toastAmount = $("#toastAmount");
+    const modal = $("#modal");
+    const promoCode = $("#promoCode");
+    const promoInline = $("#promoInline");
+
+    let currentOnline = CONFIG.onlineStart;
+    let currentWins = CONFIG.winsStart;
+    let secondsLeft = CONFIG.countdownSeconds;
+    let tickerIndex = 0;
+    let toastTimer = null;
+
+    promoCode.textContent = CONFIG.promoCode;
+    promoInline.textContent = CONFIG.promoCode;
+
+    function clamp(value, min, max) {
+      return Math.max(min, Math.min(max, value));
     }
 
-    document.getElementById("playBtn").href = buildUrl(TARGET_URL);
-
-    const promo = document.getElementById("promoCode").textContent.trim();
-    const copyBtn = document.getElementById("copyBtn");
-    const toast = document.getElementById("toast");
-
-    async function copyCode() {
-      const doneText = "복사 완료. 가입할 때 코드 칸에 넣으면 됨";
-      const baseText = "복사 → 가입할 때 코드 칸에 붙여넣기";
-
-      try {
-        await navigator.clipboard.writeText(promo);
-        toast.textContent = doneText;
-        setTimeout(() => toast.textContent = baseText, 2200);
-      } catch (e) {
-        const ta = document.createElement("textarea");
-        ta.value = promo;
-        document.body.appendChild(ta);
-        ta.select();
-        document.execCommand("copy");
-        document.body.removeChild(ta);
-        toast.textContent = doneText;
-        setTimeout(() => toast.textContent = baseText, 2200);
-      }
+    function randomInt(min, max) {
+      return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    copyBtn.addEventListener("click", copyCode);
-    document.getElementById("playBtn").addEventListener("touchstart", () => {}, { passive:true });
+    function updateStats() {
+      currentOnline = clamp(currentOnline + randomInt(-17, 24), CONFIG.onlineMin, CONFIG.onlineMax);
+      currentWins = clamp(currentWins + randomInt(-2, 4), CONFIG.winsMin, CONFIG.winsMax);
+      onlineCount.textContent = currentOnline.toLocaleString("ko-KR");
+      winCount.textContent = currentWins.toLocaleString("ko-KR");
+    }
+
+    function updateTimer() {
+      const minutes = Math.floor(secondsLeft / 60).toString().padStart(2, "0");
+      const seconds = (secondsLeft % 60).toString().padStart(2, "0");
+      timer.textContent = `${minutes}:${seconds}`;
+      secondsLeft -= 1;
+      if (secondsLeft < 0) secondsLeft = CONFIG.countdownSeconds;
+    }
+
+    function showWinToast() {
+      const item = CONFIG.jackpotItems[tickerIndex % CONFIG.jackpotItems.length];
+      tickerIndex += 1;
+
+      toastId.textContent = `ID: ${item.id}`;
+      toastGame.textContent = `${item.game}에서 방금 당첨`;
+      toastAmount.textContent = item.amount;
+
+      winToast.classList.add("is-visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => {
+        winToast.classList.remove("is-visible");
+      }, 4200);
+    }
+
+    function scheduleWinToast() {
+      const delay = randomInt(6800, 11800);
+      window.setTimeout(() => {
+        showWinToast();
+        scheduleWinToast();
+      }, delay);
+    }
+
+
+    $("#openModal").addEventListener("click", () => modal.classList.add("is-open"));
+    $("#closeModal").addEventListener("click", () => modal.classList.remove("is-open"));
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) modal.classList.remove("is-open");
+    });
+
+    $("#copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(CONFIG.promoCode);
+        $("#copyBtn").textContent = "복사됨";
+        setTimeout(() => $("#copyBtn").textContent = "복사", 1300);
+      } catch (error) {
+        alert(CONFIG.promoCode);
+      }
+    });
+
+    updateStats();
+    updateTimer();
+    scheduleWinToast();
+
+    setInterval(updateStats, 1900);
+    setInterval(updateTimer, 1000);
   </script>
 </body>
 </html>
