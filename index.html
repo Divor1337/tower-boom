@@ -201,7 +201,7 @@
     .game-card {
       position: relative;
       overflow: hidden;
-      min-height: 236px;
+      min-height: 258px;
       border: 1px solid var(--stroke);
       border-radius: var(--radius);
       background: linear-gradient(180deg, var(--card-2), var(--card));
@@ -215,13 +215,13 @@
       position: absolute;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.09), transparent 38%, rgba(0, 0, 0, 0.30));
+      background: linear-gradient(to bottom, rgba(255, 255, 255, 0.07), transparent 48%, rgba(0, 0, 0, 0.24));
       z-index: 2;
     }
 
     .media {
       position: relative;
-      height: 142px;
+      height: 172px;
       overflow: hidden;
       background: rgba(255, 255, 255, 0.04);
     }
@@ -232,7 +232,7 @@
       height: 100%;
       object-fit: cover;
       display: block;
-      transform: scale(1.02);
+      transform: scale(1.01);
     }
 
     .badge {
@@ -258,16 +258,16 @@
     .content {
       position: relative;
       z-index: 4;
-      padding: 13px 12px 14px;
+      padding: 10px 12px 12px;
     }
 
     .content h2 {
-      margin: 0 0 11px;
-      min-height: 38px;
+      margin: 0 0 8px;
+      min-height: 20px;
       display: flex;
       align-items: center;
-      font-size: 16px;
-      line-height: 1.12;
+      font-size: 15px;
+      line-height: 1.1;
       letter-spacing: -0.035em;
       text-transform: uppercase;
     }
@@ -278,13 +278,13 @@
       justify-content: center;
       gap: 8px;
       width: 100%;
-      min-height: 43px;
+      min-height: 39px;
       border: 0;
-      border-radius: 15px;
+      border-radius: 14px;
       background: linear-gradient(135deg, #ff325d, #ff7a2f);
       color: #fff;
       text-decoration: none;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 1000;
       box-shadow: 0 14px 32px rgba(255, 69, 55, 0.28);
       cursor: pointer;
@@ -480,10 +480,11 @@
     @media (max-width: 380px) {
       .page { padding-inline: 10px; }
       .grid { gap: 10px; }
-      .game-card { min-height: 224px; border-radius: 22px; }
-      .media { height: 132px; }
-      .content h2 { font-size: 14px; }
-      .play-btn { font-size: 13px; min-height: 40px; }
+      .game-card { min-height: 240px; border-radius: 22px; }
+      .media { height: 158px; }
+      .content { padding: 9px 10px 11px; }
+      .content h2 { font-size: 13px; min-height: 18px; margin-bottom: 7px; }
+      .play-btn { font-size: 12px; min-height: 36px; }
       .hero h1 { font-size: 23px; }
     }
   </style>
@@ -677,9 +678,9 @@
       }, delay);
     }
 
-
     $("#openModal").addEventListener("click", () => modal.classList.add("is-open"));
     $("#closeModal").addEventListener("click", () => modal.classList.remove("is-open"));
+
     modal.addEventListener("click", (event) => {
       if (event.target === modal) modal.classList.remove("is-open");
     });
